@@ -1,0 +1,72 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="/static/styles.css" rel="stylesheet" type="text/css"/>
+    <meta charset="UTF-8">
+    <title>ASCII Art Converter</title>
+    <!-- <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        textarea {
+            width: 100%;
+        }
+
+        input[type="submit"] {
+            margin-top: 10px;
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+
+        .result-box {
+            height: 100%;
+            width: 100%;
+            overflow: scroll;
+            background-color: #373636;
+            padding: 70px;
+            /* border-radius: 100%; */
+        }
+    </style> -->
+</head>
+<body>
+    <h1>ASCII Art Converter</h1>
+    <form action="/ascii-art" method="post">
+        <label for="ascii-data">Enter Text:</label>
+        <textarea id="ascii-data" name="ascii-data" rows="5" cols="50"></textarea><br>
+        <label for="fonts">Select Font:</label>
+        <select id="fonts" name="fonts">
+            <option value="standard">Standard</option>
+            <option value="shadow">Shadow</option>
+            <option value="thinkertoy">Thinkertoy</option>
+        </select><br>
+        <input type="submit" value="Convert">
+    </form>
+
+    <h2>Output:</h2>
+    {{if .First}}
+        <center><div class="result-box">
+            <pre>{{.First}}</pre>
+        </div></center>
+    {{end}}
+    
+</body>
+</html>
