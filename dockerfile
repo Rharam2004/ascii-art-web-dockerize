@@ -1,10 +1,11 @@
-FROM golang:1.22.2
+FROM golang:latest
 
 WORKDIR /app
 
-COPY go.mod .
-COPY main.go .
+COPY . .
 
-RUN go build -o bin .
+RUN go build -o main .
 
-ENTRYPOINT [ "/app/bin" ]
+EXPOSE 8080
+
+CMD ["./main"]
