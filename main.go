@@ -20,6 +20,7 @@ func main() {
 	fmt.Println("HTTP SERVER RUNNING AT: http://localhost:8080")
 	http.ListenAndServe(":8080", nil)
 }
+
 // 500 Is a status code for internal error
 func ascii_art(argument string, fonts string) (string, int) {
 	// Read the banner file based on the specified font
@@ -34,7 +35,7 @@ func ascii_art(argument string, fonts string) (string, int) {
 	}
 
 	myting := strings.Split(strings.ReplaceAll(argument, "\r", ""), "\n") // Splitting the input text by "\\n"
-	
+
 	for word := 0; word < len(myting); word++ {
 		if word == 0 && len(myting) >= 3 {
 			// Skip empty lines at the beginning of the input
@@ -80,7 +81,7 @@ func init() {
 // Render function processes the given string and returns the result along with a status code
 func render(s string) (string, int) {
 	noerr, _ := errorcheck(s)
-	
+
 	if len(s) >= 128 {
 		return "Too long", 400
 	}
@@ -90,7 +91,7 @@ func render(s string) (string, int) {
 	}
 
 	if noerr {
-		result := strings.ReplaceAll(s,"\r\n", "\n")
+		result := strings.ReplaceAll(s, "\r\n", "\n")
 		result = strings.ReplaceAll(result, "\r", "\n")
 		return result, 200
 	} else {
@@ -168,7 +169,6 @@ func processor(w http.ResponseWriter, r *http.Request) {
 	tpl.ExecuteTemplate(w, "500.html", nil)
 	return
 }
-
 
 func index(w http.ResponseWriter, r *http.Request) {
 	userAgent := r.Header.Get("User-Agent")
